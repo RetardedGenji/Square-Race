@@ -5,8 +5,11 @@ import winsound
 def noQuit():
     pass
 
+
 class Square:
+    
     def __init__(self, parent=None):
+        
         self._running = 0
         self.activ = 0
         self.Checkpoint = 0
@@ -25,9 +28,12 @@ class Square:
         self.mapFull = PhotoImage(file='mapFull.gif')
         self.canvas.create_image(0,0, anchor=NW, image=self.mapFull)
         self.canvas.pack(pady=45)
+        
 
     def RegleDuJeu(self):
+        
         if not self._running:
+            
             tl1 = tk.Toplevel()
             tl1.title('Règles du jeu')
             tl1.overrideredirect(0)
@@ -42,6 +48,7 @@ class Square:
             self.canvas3.place(x=60, y=305)
             self.canvas4 = tk.Canvas(tl1, width=1235, height=180, bg='white')
             self.canvas4.place(x=115, y=510)
+            
             
             self.label_Bienvenue = tk.Label(tl1,
                                          text='Bienvenue à \nSquare Race Multiplayer',
@@ -71,8 +78,10 @@ class Square:
             self.label_Check.place(x=70, y=410)
             self.label_Goal.place(x=125, y=550)
             self.button_stopwatch.place(x=1044, y=60)
+            
 
             def goto_Mode():
+                
                 tl1.destroy()
                 self.Mode()           
             self.button_gotomode = tk.Button(tl1, text='C\'EST PARTI', width=14, height=3, relief=GROOVE, command=goto_Mode)
@@ -83,6 +92,7 @@ class Square:
             
             
     def Mode(self):
+        
         if self._running:
             self._running = 0
             self.coords1 = (0,600)
@@ -97,24 +107,27 @@ class Square:
             self.name = tk.StringVar()
                       
         if not self._running:
+            
             tl2 = tk.Toplevel()
             tl2.title('Mode de Jeu')
             tl2.geometry('230x250')
             tl2.resizable(0, 0)
             tl2.protocol('WM_DELETE_WINDOW', noQuit)
             
-
             self.label_title = tk.Label(tl2, text='Choisissez votre Mode de Jeu', font=font3)
             self.label_title.pack(pady=5)
+            
         
             def lazy():
                 self.latence = 900
             self.check1 = tk.Checkbutton(tl2, text='Lazy', command=lazy)
             self.check1.pack(pady=10)
+            
             def normal():
                 self.latence = 700
             self.check2 = tk.Checkbutton(tl2, text='Normal', command=normal)
             self.check2.pack(pady=10)
+            
             def hard():
                 self.latence = 500
             self.check3 = tk.Checkbutton(tl2, text='HardCore', command=hard)
@@ -364,6 +377,7 @@ class Square:
       
         self.Deplacement2()
         
+        
 
     def Win_Option(self):
         self._running = 0
@@ -420,11 +434,13 @@ class Square:
         B_Quit = tk.Button(self.tl, text='Quit', relief=GROOVE, command=main.destroy)        
         B_Restart.place(x=70, y=55)
         B_Quit.place(x=170, y=55)
+        
 
     def Restart(self):
         self.tl.destroy()
         self._running = 1
         self.Mode()
+
 
         
 main = tk.Tk()
@@ -448,4 +464,3 @@ button_regle.place(x=546, y=690)
 button_quitt.place(x=776, y=690)
 
 main.mainloop()
-#<>
